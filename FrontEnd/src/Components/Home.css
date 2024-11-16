@@ -1,0 +1,126 @@
+/* src/styles/Home.css */
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% { background-position: 0 0; }
+  100% { background-position: -1000px 0; }
+}
+
+.title-container {
+  margin-bottom: 20px;
+}
+
+.game-title {
+  font-size: 3rem;
+  color: #ffd700;
+  text-shadow: 4px 4px 8px #000;
+  font-family: 'Fredoka One', cursive;
+  animation: wave 2s infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.character-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.monkey-image {
+  width: 150px;
+  height: auto;
+  animation: swing 3s ease-in-out infinite;
+}
+
+.banana-image {
+  width: 100px;
+  height: auto;
+  animation: bounce 2s infinite;
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.description-text {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #690857;
+  font-family: 'Arial', sans-serif;
+  margin-top: 30px;
+  max-width: 80%;
+  line-height: 1.5;
+  animation: fadeIn 2s ease-out;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.start-button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #0fdf4e;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.start-button:hover {
+  transform: scale(1.1);
+  background-color: #baef0f;
+}
+
+.sign-out-button {
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #ef2424;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+}
+
+.sign-out-button:hover {
+  transform: scale(1.1);
+  background-color: #f96807;
+}

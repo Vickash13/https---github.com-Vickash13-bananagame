@@ -1,0 +1,186 @@
+/* Set the banana yellow background for the entire game UI */
+.game-container {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: linear-gradient(45deg, #a4c400, #8e9f00) ; /* Banana yellow background */
+    background-image: radial-gradient(circle,  #a4c400 40%, #ffec57 60%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Modern look for the header */
+h3 {
+    font-size: 2em;
+    font-weight: 800;
+    color: #17432a !important;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Animation for heading */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Center the timer and hearts */
+.timer-and-lives {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+    margin-top: 1px;
+}
+
+/* Timer with glow effect */
+.timer {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: white;
+    background: #4e3e02; /* Greenish yellow gradient */
+    padding: 10px 16px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 255, 255, 0.8);
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 8px #fff, 0 0 12px #a4c400;
+    }
+    100% {
+        box-shadow: 0 0 16px #fff, 0 0 24px #8e9f00;
+    }
+}
+
+/* Hearts with bounce animation */
+.lives {
+    font-size: 2em;
+    display: flex;
+    gap: 10px;
+}
+
+.heart {
+    color: red;
+    animation: bounce 0.6s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Styling for the question area */
+.question-container {
+    margin-top: -60px;
+}
+
+.question-text {
+    font-size: 2em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+/* Make the question image slightly larger and add shadow */
+.question-img {
+    width: 98%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease;
+}
+
+.question-img:hover {
+    transform: scale(1.15);
+}
+
+/* Answer buttons with hover and click effects */
+.answer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.circle-button {
+    width:50px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.circle-button:hover {
+    background-color: #333;
+    transform: scale(1.1) rotate(15deg);
+}
+
+.circle-button:active {
+    background-color: #555;
+    transform: scale(1.05) rotate(-10deg);
+}
+
+/* Styling for the result and game over message */
+.result, .game-over {
+    margin-top: 20px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Game Over style */
+.game-over {
+    font-size: 1.8em;
+    color: red;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+
+/* Loading state */
+.loading {
+    font-size: 1.2em;
+    color: #ff9900;
+    text-align: center;
+    margin-top: 40px;
+}
