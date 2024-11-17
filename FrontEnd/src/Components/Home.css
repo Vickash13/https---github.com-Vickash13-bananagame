@@ -1,4 +1,6 @@
-/* src/styles/Home.css */
+/* Home.css */
+
+/* Home Container */
 .home-container {
   position: relative;
   width: 100%;
@@ -8,8 +10,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Background Image */
 .background-image {
   position: absolute;
   top: 0;
@@ -26,40 +30,82 @@
   100% { background-position: -1000px 0; }
 }
 
+/* Title Container */
 .title-container {
   margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Game Title */
 .game-title {
-  font-size: 3rem;
-  color: #ffd700;
-  text-shadow: 4px 4px 8px #000;
+  font-size: 4.5rem;
   font-family: 'Fredoka One', cursive;
-  animation: wave 2s infinite;
+  background: linear-gradient(120deg, #ffd700, #ff5733, #ff1493, #3b82f6, #14f195);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 87, 51, 0.6),
+    0 0 30px rgba(255, 20, 147, 0.5),
+    0 0 40px rgba(59, 130, 246, 0.4);
+  animation: gradientShift 5s infinite alternate, glowPulse 1.5s infinite ease-in-out, textWave 2s infinite ease-in-out;
 }
 
-@keyframes wave {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(5deg); }
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 8px rgba(218, 251, 2, 0.8),
+      0 0 20px rgba(255, 87, 51, 0.6),
+      0 0 30px rgba(255, 20, 147, 0.5),
+      0 0 40px rgba(59, 130, 246, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow:
+      0 0 12px rgb(51, 2, 247),
+      0 0 25px rgba(255, 87, 51, 0.8),
+      0 0 35px rgba(255, 20, 147, 0.7),
+      0 0 50px rgba(59, 130, 246, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes textWave {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+/* Character Container */
 .character-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  box-shadow: 0 50px 200px rgba(29, 81, 91, 0.2);
+  padding: 15px;
+  border-radius: 15px;
 }
 
+/* Monkey Image */
 .monkey-image {
   width: 150px;
   height: auto;
   animation: swing 3s ease-in-out infinite;
-}
-
-.banana-image {
-  width: 100px;
-  height: auto;
-  animation: bounce 2s infinite;
+  box-shadow: 0 50px 15px rgba(247, 2, 235, 0.3);
+  margin-top: -20px;
 }
 
 @keyframes swing {
@@ -67,22 +113,20 @@
   50% { transform: rotate(10deg); }
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
+/* Description Text */
 .description-text {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   text-align: center;
-  color: #690857;
-  font-family: 'Arial', sans-serif;
-  margin-top: 30px;
-  max-width: 80%;
-  line-height: 1.5;
+  color: #faf9fe;
+  font-family: 'Comic Sans MS', 'Fredoka One', cursive;
+  margin-top: 10px;
+  max-width: 90%;
+  line-height: 1.6;
   animation: fadeIn 2s ease-out;
-  margin-left: auto;
-  margin-right: auto;
+  box-shadow: 0 10px 25px rgba(20, 0, 90, 0.5);
+  padding: 15px;
+  background-color: rgba(246, 8, 154, 0.2);
+  border-radius: 15px;
 }
 
 @keyframes fadeIn {
@@ -90,37 +134,39 @@
   100% { opacity: 1; }
 }
 
-.start-button {
+/* Shared Button Styles */
+button {
   padding: 15px 30px;
   font-size: 1.5rem;
   color: #fff;
-  background-color: #0fdf4e;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 15px rgba(0, 0, 0, 0.3);
 }
 
-.start-button:hover {
+/* Specific Button Colors */
+.start-button {
+  background-color: #0fdf4e;
+  box-shadow: 0 40px 15px rgba(187, 248, 5, 0.3);
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.signout-button {
+  background-color: #ef2424;
+  box-shadow: 0 30px 15px rgba(251, 4, 4, 0.3);
+}
+
+/* Shared Button Hover Effect */
+button:hover {
   transform: scale(1.1);
   background-color: #baef0f;
 }
 
-.sign-out-button {
-  padding: 15px 30px;
-  font-size: 1.5rem;
-  color: #fff;
-  background-color: #ef2424;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  margin-top: 10px;
-}
-
-.sign-out-button:hover {
+button:focus {
+  outline: none;
   transform: scale(1.1);
-  background-color: #f96807;
+  box-shadow: 0 0 10px #ffeb3b;
 }

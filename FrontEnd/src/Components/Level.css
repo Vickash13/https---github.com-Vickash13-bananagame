@@ -1,7 +1,14 @@
-/* Styles for the Level page */
+/* General styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  cursor: url('/assets/banana-cursor.png'), auto;
+}
+
+/* Level page container */
 .level-container {
-  text-align: center;
-  background-image: url('/assets/backgro1.jpeg'); /* Background image */
+  background-image: url('/assets/backgro1.jpeg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -9,23 +16,40 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #fff;
+  animation: jungleZoom 20s infinite alternate ease-in-out;
 }
 
+@keyframes jungleZoom {
+  0% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 105%;
+  }
+}
+
+/* Header styles */
 h1 {
-  color: rgb(44, 48, 24) !important;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  color: #c006fe;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #101881, 0 0 20px #130bae, 0 0 30px #ff007f;
+  animation: flicker 2s infinite;
 }
 
-/* Styles for the centered image */
-.centered-image {
-  width: 200px;   /* Adjust the size as needed */
-  height: auto;   /* Keep the aspect ratio intact */
-  margin-bottom: 30px; /* Space below the image */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #160c61, 0 0 20px #15644c, 0 0 30px #ff007f;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 5px #0d6a39, 0 0 10px #0a7148;
+  }
 }
 
-/* Container for buttons */
+/* Button container */
 .button-container {
   display: flex;
   flex-direction: column;
@@ -33,65 +57,91 @@ h1 {
   align-items: center;
 }
 
-/* Level Button Styles */
+/* Level button styles */
 .level-button {
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 15px 25px;
+  font-size: 1.2rem;
   color: #fff;
-  border: none;
-  border-radius: 8px;
+  border: 2px solid transparent;
+  border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
-  margin-bottom: 15px;
-  width: 200px;
+  transition: all 0.4s ease;
+  background-image: linear-gradient(to right, #f9ff00, #f7931e);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  width: 240px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.level-button:before {
+  content: '🍌'; /* Add a banana emoji */
+  position: absolute;
+  left: -30px;
+  font-size: 1.5rem;
+  animation: float 2s infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .level-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(-2deg);
+  background-image: linear-gradient(to right, #f7931e, #f9ff00);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Specific colors for different difficulty levels */
+/* Button colors */
 .easy {
-  background-color: #4CAF50 ;
-}
-
-.easy:hover {
-  background-color: #45a049 ;
+  background-image: linear-gradient(to right, #4CAF50, #8BC34A);
 }
 
 .normal {
-  background-color: #ff9800 ;
-}
-
-.normal:hover {
-  background-color: #fb8c00;
+  background-image: linear-gradient(to right, #ff9800, #f57c00);
 }
 
 .hard {
-  background-color: #f44336;
-}
-
-.hard:hover {
-  background-color: #d32f2f;
+  background-image: linear-gradient(to right, #f44336, #d32f2f);
 }
 
 /* Sign Out button */
 .sign-out-button {
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 15px 25px;
+  font-size: 1.2rem;
   color: #fff;
-  background-color: #ef2424;
-  border: none;
-  border-radius: 8px;
+  border: 2px solid transparent;
+  border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
-  margin-top: 20px;
-  width: 200px;
+  transition: all 0.4s ease;
+  background-image: linear-gradient(to right, #ff6161, #ff1e1e);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  width: 240px;
 }
 
 .sign-out-button:hover {
-  transform: scale(1.1);
-  background-color: #f96807;
+  animation: wobble 0.6s ease;
+  background-image: linear-gradient(to right, #ff1e1e, #ff6161);
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

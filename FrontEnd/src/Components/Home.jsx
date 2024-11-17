@@ -33,10 +33,10 @@ const Home = ({ audioRef }) => {
         <img src={monkeyImage} alt="Monkey" className="monkey-image" />
 
       </div>
-      <p className="description-text"><b>Get ready Monkeys for an exciting adventure with the banana game! <br/> Start the game now to collect bananas <br></br> and reach new levels!</b></p>
+      <p className="description-text"><b> Start the game now to collect bananas  and reach new levels!</b></p>
       <div className="button-container">
         <button className="start-button" onClick={startGame}>Start Game</button>
-        <button className="sign-out-button" onClick={signOut}>Sign Out</button>
+        <button className="signout-button" onClick={signOut}>Sign Out</button>
       </div>
     </div>
   );
