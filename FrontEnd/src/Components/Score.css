@@ -1,0 +1,151 @@
+/* ScorePage.css */
+html, body {
+    height: 100%; /* Ensure full height for the page */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .score {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    background-color: #8c9410; /* Banana leaf green color */
+    transition: background-color 0.5s ease; /* Smooth background transition */
+    height: 100vh; /* Use the full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+  }
+  
+  .game-over-text {
+    font-size: 2.5rem; /* Adjusted font size for h4 */
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 40px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); /* Adding shadow for depth */
+    animation: fadeIn 1s ease-in-out; /* Smooth fade-in animation */
+  }
+  
+  /* Keyframe for fade-in effect */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .score-category {
+    margin: 20px;
+  }
+  
+  .score-badge-excellent {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: #BDAA5D;
+    padding: 10px;
+  }
+  
+  .score-badge-good {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: #FF9800;
+    padding: 10px;
+  }
+  
+  .score-badge-needs-improvement {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: #F44336;
+    padding: 10px;
+  }
+  
+  .score-display {
+    margin-top: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .score-circle {
+    margin-top: 30px;
+    display: inline-block;
+  }
+  
+  .score-action-buttons {
+    margin-top: 30px;
+  }
+  
+  .banana-main-menu-button {
+    padding: 20px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background-color: #F9C800; /* Banana Yellow */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 240px;
+    position: relative;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .banana-main-menu-button:hover {
+    background-color: #FFCA28; /* Lighter banana yellow */
+    transform: scale(1.05); /* Slightly increase button size */
+  }
+  
+  .banana-main-menu-button:active {
+    transform: scale(0.98);
+  }
+  
+  .banana-main-menu-button:focus {
+    outline: none;
+  }
+  
+  .banana-retry-button {
+    padding: 20px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background-color: #FFEB3B; /* Banana Yellow with lighter shade */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    width: 240px;
+    position: relative;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .banana-retry-button:hover {
+    background-color: #FFCA28; /* Lighter yellow */
+  }
+  
+  .banana-retry-button:active {
+    transform: scale(0.98);
+  }
+  
+  .banana-retry-button:focus {
+    outline: none;
+  }
+  
+  .banana-main-menu-button::before, 
+  .banana-retry-button::before {
+    content: "🍌"; /* Add banana emoji before the button text */
+    font-size: 1.8rem;
+    margin-right: 10px;
+    transition: transform 0.3s;
+  }
+  
+  .banana-main-menu-button:hover::before,
+  .banana-retry-button:hover::before {
+    transform: rotate(15deg); /* Rotate banana emoji when hovering */
+  }
+  

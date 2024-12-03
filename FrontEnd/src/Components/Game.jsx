@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Game.css';
 
 const Game = () => {
   const { difficulty, timer } = useParams();
+  const navigate = useNavigate();
   const [countdown, setCountdown] = useState(Number(timer));
   const [gameData, setGameData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -14,16 +15,36 @@ const Game = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
 
-  const apiUrl = 'http://localhost:3000/api/banana';
+  const apiUrl = 'http://localhost:3000/api/banana'; // Keep the game data API URL
 
   const fetchGameData = async () => {
     try {
       const response = await axios.get(apiUrl);
+      console.log('Fetched game data:', response.data);
       setGameData(response.data);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching game data:', error);
       setIsLoading(false);
+    }
+  };
+
+  const saveScore = async () => {
+    const userData = JSON.parse(localStorage.getItem('user')) || { username: 'Guest' };
+    const payload = { username: userData.username, score: correctAnswers };
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/save-score', payload, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response.status === 200) {
+        console.log('Score updated:', response.data);
+      } else {
+        console.error('Failed to update score:', response.data);
+      }
+    } catch (error) {
+      console.error('Error saving score:', error.message, error.response?.data);
     }
   };
 
@@ -44,21 +65,36 @@ const Game = () => {
     setIntervalId(interval);
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+  }, [difficulty, navigate]);
+
+  useEffect(() => {
+    if (isGameOver) {
+      saveScore(); // Save the score to the database
+      const userData = JSON.parse(localStorage.getItem('user')) || { username: 'Guest' };
+      navigate('/score', {
+        state: {
+          user: userData.username,
+          difficulty,
+          score: correctAnswers,
+        },
+      });
+    }
+  }, [isGameOver, correctAnswers, difficulty, navigate]);
 
   const handleAnswer = async (selectedAnswer) => {
-    if (isGameOver) return; // Disable further interaction after the game ends
+    if (isGameOver) return;
 
     try {
       const response = await axios.post(`${apiUrl}/check`, { answer: selectedAnswer });
+
       if (response.data.isCorrect) {
-        setCorrectAnswers((prev) => prev + 1); // Increment correct answers
+        setCorrectAnswers((prev) => prev + 1);
         setResult('Correct Answer! Generating new question...');
         fetchGameData(); // Fetch a new question
       } else {
         setResult('Wrong Answer! Try again.');
         if (lives > 1) {
-          setLives((prev) => prev - 1); // Decrease lives
+          setLives((prev) => prev - 1);
         } else {
           setLives(0);
           clearInterval(intervalId); // Stop timer
@@ -73,6 +109,16 @@ const Game = () => {
   };
 
   if (isLoading) return <div className="loading">Loading game data...</div>;
+
+  const generateAnswers = (solution) => {
+    const answers = Array.from({ length: 10 }, (_, i) => i);
+    if (!answers.includes(solution)) {
+      answers[0] = solution; // Ensure the correct answer is included
+    }
+    return answers;
+  };
+
+  const answers = gameData ? generateAnswers(gameData.solution) : [];
 
   return (
     <div className="game-container">
@@ -93,16 +139,20 @@ const Game = () => {
       </div>
 
       <div className="answer-buttons">
-        {[...Array(10).keys()].map((num) => (
-          <button
-            key={num}
-            className="circle-button"
-            onClick={() => handleAnswer(num)}
-            disabled={isGameOver} // Disable buttons if the game is over
-          >
-            {num}
-          </button>
-        ))}
+        {answers.length > 0 ? (
+          answers.map((answer, index) => (
+            <button
+              key={index}
+              className="circle-button"
+              onClick={() => handleAnswer(answer)}
+              disabled={isGameOver}
+            >
+              {answer}
+            </button>
+          ))
+        ) : (
+          <div>Answers are still loading...</div>
+        )}
       </div>
 
       {result && <p className="result">{result}</p>}

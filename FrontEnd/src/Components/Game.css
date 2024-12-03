@@ -2,8 +2,7 @@
 .game-container {
     text-align: center;
     font-family: 'Poppins', sans-serif;
-    background-color: linear-gradient(45deg, #a4c400, #8e9f00) ; /* Banana yellow background */
-    background-image: radial-gradient(circle,  #a4c400 40%, #ffec57 60%);
+    background-image: radial-gradient(circle, #a4c400 40%, #ffec57 60%);
     min-height: 100vh;
     padding: 20px;
     color: #333;
@@ -51,7 +50,7 @@ h3 {
     font-size: 1.5em;
     font-weight: 600;
     color: white;
-    background: #4e3e02; /* Greenish yellow gradient */
+    background: #4e3e02;
     padding: 10px 16px;
     border-radius: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 255, 255, 0.8);
@@ -124,7 +123,7 @@ h3 {
 }
 
 .circle-button {
-    width:50px;
+    width: 50px;
     height: 60px;
     border-radius: 50%;
     background-color: black;
@@ -183,4 +182,70 @@ h3 {
     color: #ff9900;
     text-align: center;
     margin-top: 40px;
+}
+
+/* Game over button styling */
+.game-over button {
+    color: #eeebe6;
+    background-color: #088cf0;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.game-over button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.game-over button:active {
+    background-color: #004080;
+    transform: scale(1);
+}
+
+/* Loading spinner */
+.loading:before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 4px solid #fff;
+    border-top: 4px solid #ff9900;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .timer-and-lives {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .circle-button {
+        width: 45px;
+        height: 55px;
+        font-size: 20px;
+    }
+
+    .question-img {
+        width: 90%;
+    }
+
+    .answer-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
 }

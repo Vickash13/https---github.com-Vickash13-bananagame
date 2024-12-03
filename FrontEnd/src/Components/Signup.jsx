@@ -32,6 +32,16 @@ const Signup = () => {
         .then((response) => {
             setIsLoading(false);
             if (response.data.status) {
+                // Save user data to localStorage after successful signup
+                const userData = {
+                    username: username,  // Username from the form
+                    email: email,        // You could also store the email if needed
+                };
+                localStorage.setItem('user', JSON.stringify(userData)); // Store in localStorage
+
+                // Log the stored data to verify
+                console.log("User data saved to localStorage:", userData);
+
                 navigate('/login');
             } else {
                 setErrorMessage("Signup failed. Please try again.");

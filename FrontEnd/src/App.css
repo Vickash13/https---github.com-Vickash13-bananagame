@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('./assets/1.jpeg'), linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)); /* Darker gradient overlay */
+    background-image: url('./assets/log3.jpeg'), linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)); /* Darker gradient overlay */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

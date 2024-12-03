@@ -5,20 +5,24 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import axios from 'axios';
 import { UserRouter } from './routes/user.js';
+import { User } from './models/User.js';  // Import User model
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173"], // Adjust to your frontend's URL
   credentials: true,
 }));
 app.use(cookieParser());
 app.use('/auth', UserRouter);
 
 // MongoDB connection
-mongoose.connect('mongodb://127.0.0.1:27017/authentication')
+mongoose.connect('mongodb://127.0.0.1:27017/authentication', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('MongoDB connection error:', error));
 
@@ -29,11 +33,11 @@ let currentGameData = null;
 app.get('/api/banana', async (req, res) => {
   try {
     const response = await axios.get('https://marcconrad.com/uob/banana/api.php?out=json');
-    console.log('Banana API Response:', response.data);
+    console.log('Fetched game data:', response.data);
     currentGameData = response.data; // Cache the game data
     res.json(response.data);
   } catch (error) {
-    console.error('Error fetching game data:', error);
+    console.error('Error fetching game data from Banana API:', error.message);
     res.status(500).json({ message: 'Error fetching game data' });
   }
 });
@@ -43,12 +47,45 @@ app.post('/api/banana/check', (req, res) => {
   const { answer } = req.body;
 
   if (!currentGameData) {
+    console.error('Game data not loaded yet.');
     return res.status(400).json({ message: 'Game data not loaded. Please start the game first.' });
   }
 
   // Compare the answer with the correct solution in `currentGameData`
   const isCorrect = answer == currentGameData.solution; // Using '==' for loose comparison
   res.json({ isCorrect });
+});
+
+// POST route to save score
+app.post('/api/save-score', async (req, res) => {
+  const { username, score } = req.body;
+
+  if (!username || typeof score !== 'number') {
+    return res.status(400).json({ message: 'Invalid username or score' });
+  }
+
+  try {
+    // Check if user exists
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      // If user doesn't exist, create a new user
+      const newUser = new User({
+        username,
+        score,
+      });
+      await newUser.save();
+      return res.status(201).json({ message: 'User created and score saved' });
+    }
+
+    // Update score for existing user
+    user.score = score;
+    await user.save();
+    return res.json({ message: 'Score updated successfully' });
+  } catch (error) {
+    console.error('Error saving score:', error);
+    res.status(500).json({ message: 'Error saving score' });
+  }
 });
 
 // Start the server

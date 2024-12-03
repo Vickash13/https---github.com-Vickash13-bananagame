@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Level.css';
 
 // Import the background image
-import backgroundImage from '../assets/backgro1.jpeg'; 
+import backgroundImage from '../assets/log1.jpeg'; 
 
 const Level = () => {
   const navigate = useNavigate();
@@ -38,13 +38,13 @@ const Level = () => {
       <h1>Select Game Difficulty</h1>
       {/* Button container */}
       <div className="button-container">
-        <button onClick={() => handleLevelClick('Easy', 30)} className="level-button easy">
+        <button onClick={() => handleLevelClick('Easy', 90)} className="level-button easy">
           Easy
         </button>
         <button onClick={() => handleLevelClick('Normal', 60)} className="level-button normal">
           Normal
         </button>
-        <button onClick={() => handleLevelClick('Hard', 90)} className="level-button hard">
+        <button onClick={() => handleLevelClick('Hard', 30)} className="level-button hard">
           Hard
         </button>
         <button onClick={signOut} className="sign-out-button">

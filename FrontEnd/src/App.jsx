@@ -8,6 +8,7 @@ import ResetPassword from './Components/ResetPassword';
 import Level from './Components/Level';
 import Game from './Components/Game';
 import backgroundMusic from './assets/background-music.mp3'; // Import the music file
+import Score from './Components/Score'
 
 function App() {
   const audioRef = useRef(null); // Create a reference to control the audio
@@ -28,6 +29,7 @@ function App() {
         <Route path='/home' element={<Home audioRef={audioRef} />} />
         <Route path='/level' element={<Level />} />
         <Route path='/game/:difficulty/:timer' element={<Game />} />
+        <Route path="/score" element={<Score />} />
       </Routes>
     </BrowserRouter>
   );

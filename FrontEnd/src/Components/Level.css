@@ -8,7 +8,7 @@ body {
 
 /* Level page container */
 .level-container {
-  background-image: url('/assets/backgro1.jpeg');
+  background-image: url('/assets/log1');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -31,11 +31,13 @@ body {
 
 /* Header styles */
 h1 {
-  color: #c006fe;
+  color: #3b1747;
   font-size: 3rem;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
   text-shadow: 0 0 10px #101881, 0 0 20px #130bae, 0 0 30px #ff007f;
   animation: flicker 2s infinite;
+  margin-top: 180px;
+
 }
 
 @keyframes flicker {
@@ -55,6 +57,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 
 /* Level button styles */
