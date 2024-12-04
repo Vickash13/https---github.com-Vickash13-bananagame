@@ -31,10 +31,10 @@ body {
 
 /* Header styles */
 h1 {
-  color: #3b1747;
+  color: #441ace;
   font-size: 3rem;
   margin-bottom: 80px;
-  text-shadow: 0 0 10px #101881, 0 0 20px #130bae, 0 0 30px #ff007f;
+  text-shadow: 0 0 10px #101881, 0 0 20px #aaa9c8, 0 0 30px #ff007f;
   animation: flicker 2s infinite;
   margin-top: 180px;
 
@@ -43,11 +43,11 @@ h1 {
 @keyframes flicker {
   0%, 100% {
     opacity: 1;
-    text-shadow: 0 0 10px #160c61, 0 0 20px #15644c, 0 0 30px #ff007f;
+    text-shadow: 0 0 10px #a59ed5, 0 0 20px #15644c, 0 0 30px #ff007f;
   }
   50% {
     opacity: 0.8;
-    text-shadow: 0 0 5px #0d6a39, 0 0 10px #0a7148;
+    text-shadow: 0 0 5px #ca1189, 0 0 10px #0a7148;
   }
 }
 

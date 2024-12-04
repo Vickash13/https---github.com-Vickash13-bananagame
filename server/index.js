@@ -56,7 +56,7 @@ app.post('/api/banana/check', (req, res) => {
   res.json({ isCorrect });
 });
 
-// POST route to save score
+// POST route to save score without updating existing scores
 app.post('/api/save-score', async (req, res) => {
   const { username, score } = req.body;
 
@@ -65,7 +65,6 @@ app.post('/api/save-score', async (req, res) => {
   }
 
   try {
-    // Check if user exists
     const user = await User.findOne({ username });
 
     if (!user) {
@@ -83,8 +82,19 @@ app.post('/api/save-score', async (req, res) => {
     await user.save();
     return res.json({ message: 'Score updated successfully' });
   } catch (error) {
-    console.error('Error saving score:', error);
-    res.status(500).json({ message: 'Error saving score' });
+    console.error('Error saving score:', error);  // Log the error to console
+    res.status(500).json({ message: 'Error saving score', error: error.message });  // Send error details back
+  }
+});
+app.get('/api/leaderboard', async (req, res) => {
+  try {
+    const leaderboard = await User.find({})
+      .sort({ score: -1 }) // Sort by score in descending order
+      .limit(10); // Optional: Limit to top 10 users
+    res.json(leaderboard);
+  } catch (error) {
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ message: 'Error fetching leaderboard' });
   }
 });
 

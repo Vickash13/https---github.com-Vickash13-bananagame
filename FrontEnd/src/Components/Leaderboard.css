@@ -1,0 +1,222 @@
+/* Main container with a background image */
+.leaderboard-container {
+    padding: 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Slight dark overlay for readability */
+    position: relative;
+    overflow: hidden;
+    animation: bgEffect 10s infinite alternate;
+  }
+  
+  /* Keyframe for background animation */
+  @keyframes bgEffect {
+    0% {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    100% {
+      background-color: rgba(205, 45, 45, 0.7);
+    }
+  }
+  
+  /* Title of the leaderboard */
+  .leaderboard-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #0ff980; /* Banana yellow */
+    text-shadow: 0 0 10px rgba(130, 17, 17, 0.8);
+    margin-bottom: 30px;
+    animation: fadeIn 2s ease-out;
+  }
+  
+  /* Keyframe for fade-in animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Table wrapper with a glassmorphism effect */
+  .table-wrapper {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);  /* Glassmorphism effect */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  /* Table styles */
+  .leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif;
+    margin-top: 20px;
+    animation: slideIn 1s ease-out;
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Table header styles */
+  .leaderboard-table th,
+  .leaderboard-table td {
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #4CAF50; /* Banana green */
+    transition: all 0.3s ease;
+  }
+  
+  .leaderboard-table th {
+    background: linear-gradient(135deg, #FFEB3B, #FF9800); /* Banana yellow and orange gradient */
+    color: #2a0a0a;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #6b09b6;
+  }
+  
+  .leaderboard-table td {
+    background-color: rgba(135, 167, 9, 0.1);
+    color: #595323; /* Banana yellow */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Add depth to rows */
+  .leaderboard-table tr {
+    transform: translateZ(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .leaderboard-table tr:hover {
+    transform: translateZ(5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Highlight the top 3 rows with unique styles */
+  .rank-1 td {
+    background-color: #FFEB3B; /* Bright yellow for Gold */
+    color: #4CAF50; /* Green */
+    font-weight: bold;
+  }
+  
+  .rank-2 td {
+    background-color: #CDDC39; /* Light green for Silver */
+    color: #4CAF50; /* Green */
+    font-weight: bold;
+  }
+  
+  .rank-3 td {
+    background-color: #8D6E63; /* Brown for Bronze */
+    color: #FFEB3B; /* Yellow */
+    font-weight: bold;
+  }
+  
+  .leaderboard-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .leaderboard-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: 10px;
+      font-size: 1rem;
+    }
+  
+    .leaderboard-table {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Button styling */
+  /* Button styling */
+.go-home-button {
+    background-color: #FF9800; /* Banana orange */
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden; /* To ensure smooth transition effects */
+  }
+  
+  /* Hover effects */
+  .go-home-button:hover {
+    background-color: #FF5722; /* Darker orange */
+    transform: scale(1.1); /* Slightly enlarge the button */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  /* Focus effect */
+  .go-home-button:focus {
+    outline: none;
+    box-shadow: 0 0 10px 4px rgba(255, 87, 34, 0.5); /* Orange glow on focus */
+  }
+  
+  /* Button Text Animation */
+  .go-home-button span {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect on button text */
+  .go-home-button:hover span {
+    color: #fff; /* Change text color on hover */
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff; /* Add glowing text effect */
+  }
+  
+  /* Adding a subtle wave effect using a pseudo-element */
+  .go-home-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.6s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 0;
+  }
+  
+  .go-home-button:hover::before {
+    transform: translate(-50%, -50%) scale(1); /* Create wave effect on hover */
+  }
+  
+  

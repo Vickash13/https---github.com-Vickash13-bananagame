@@ -4,15 +4,14 @@ import './Home.css';
 import backgroundImage from '../assets/log4.jpeg';
 import monkeyImage from '../assets/monkey.png';
 
-
 const Home = ({ audioRef }) => {
   const navigate = useNavigate();
 
   const startGame = () => {
     // Play the background music when the game starts
     audioRef.current.play();
-    // Navigate to the level page
-    navigate('/level');
+    // Navigate to the trivia question page first
+    navigate('/question');
   };
 
   const signOut = () => {
@@ -31,9 +30,8 @@ const Home = ({ audioRef }) => {
       </div>
       <div className="character-container">
         <img src={monkeyImage} alt="Monkey" className="monkey-image" />
-
       </div>
-      <p className="description-text"><b> Start the game now to collect bananas  and reach new levels!</b></p>
+      <p className="description-text"><b>Start the game now to collect bananas and reach new levels!</b></p>
       <div className="button-container">
         <button className="start-button" onClick={startGame}>Start Game</button>
         <button className="signout-button" onClick={signOut}>Sign Out</button>
