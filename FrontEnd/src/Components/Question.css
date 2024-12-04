@@ -1,64 +1,140 @@
+/* Container for the trivia game */
 .trivia-game-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #000; /* Black background */
+  min-height: 100vh;
+}
+
+/* Card that holds the content of the trivia game */
+.trivia-card {
+  background: rgba(255, 255, 255, 0.1); /* Slight transparency for modern look */
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+}
+
+/* Game title with bold, modern font */
+.game-tit {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #3f0505;
+  margin-bottom: 20px;
+  text-shadow: 0px 0px 8px rgba(0, 255, 204, 0.7); /* Glowing text */
+}
+
+/* Style for the question text */
+.question-text {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #760f67;
+  text-shadow: 0px 0px 8px rgba(0, 255, 204, 0.7); /* Glowing text */
+}
+
+/* Container for answer buttons */
+.answers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Neon-style answer button */
+.answer-button {
+  background: #39ff14; /* Neon Green */
+  color: #4e3535;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Glowing effect when hovering over the button */
+.answer-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(57, 255, 20, 0.2); /* Light neon green glow */
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+/* Button hover effect */
+.answer-button:hover {
+  background: #00ffcc; /* Neon Cyan */
+  transform: translateY(-4px);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.answer-button:active {
+  background: #ff073a; /* Neon Red */
+  transform: translateY(2px);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.answer-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.answer-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 8px 4px rgba(0, 255, 255, 0.7); /* Neon Cyan Focus Glow */
+}
+
+/* Optional: Adding an animation to the button text for extra effect */
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.7), 0 0 10px rgba(57, 255, 20, 0.7), 0 0 15px rgba(57, 255, 20, 0.7);
   }
-  
-  .trivia-card {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
+  50% {
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.7), 0 0 20px rgba(0, 255, 204, 0.7), 0 0 30px rgba(0, 255, 204, 0.7);
   }
-  
-  .game-title {
-    font-size: 2rem;
-    color: #ffcc00;
-    margin-bottom: 20px;
+  100% {
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.7), 0 0 10px rgba(57, 255, 20, 0.7), 0 0 15px rgba(57, 255, 20, 0.7);
   }
-  
-  .question-text {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .answers-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
-  
-  .answer-button {
-    background: #ffcc00;
-    color: #333;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .answer-button:hover {
-    background: #ffaa00;
-  }
-  
-  .feedback-text {
-    margin-top: 20px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .loading-text,
-  .error-text {
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
+}
+
+.answer-button:hover {
+  animation: textGlow 1.5s infinite alternate;
+}
+
+/* Feedback text style */
+.feedback-text {
+  margin-top: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Loading/error text style */
+.loading-text,
+.error-text {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 10px;
+  font-style: italic;
+  text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

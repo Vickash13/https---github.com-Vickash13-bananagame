@@ -60,13 +60,13 @@ router.post('/forgot-password', async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'your-email@gmail.com',
-        pass: 'your-email-password'
+        user: 'sivakumarvickash@gmail.com',
+        pass: 'lkoj lkga uwmq cgrc'
       }
     });
 
-    const mailOptions = {
-      from: 'your-email@gmail.com',
+    var mailOptions = {
+      from: 'sivakumarvickash@gmail.com',
       to: email,
       subject: 'Reset Password',
       text: `http://localhost:5173/resetpassword/${token}`
@@ -91,8 +91,9 @@ router.post('/reset-password/:token', async (req, res) => {
   const { password } = req.body;
   try {
     const decoded = jwt.verify(token, process.env.KEY);
+    const id = decoded.id;
     const hashPassword = await bcrypt.hash(password, 10);
-    await User.findByIdAndUpdate(decoded.id, { password: hashPassword });
+    await User.findByIdAndUpdate({_id: id}, {password: hashPassword})
     return res.json({ status: true, message: "Password updated successfully" });
   } catch (err) {
     console.error('Invalid or expired token:', err);
@@ -124,5 +125,6 @@ router.post('/save-score', async (req, res) => {
     res.status(500).json({ message: 'Error saving score' });
   }
 });
+
 
 export { router as UserRouter };
